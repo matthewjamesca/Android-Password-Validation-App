@@ -2,6 +2,10 @@ package assignmenttwo.matthew.password_validator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -9,6 +13,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button button = (Button) findViewById(R.id.validateButton) ;
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                EditText userInputText = (EditText)findViewById(R.id.inputText);
+                if (validate(userInputText.getText().toString())){
+                    TextView outputTextString = (TextView)findViewById(R.id.outputText);
+                    outputTextString.setText("Password is strong enough!");
+                }
+                else {
+                    TextView outputTextString = (TextView)findViewById(R.id.outputText);
+                    outputTextString.setText("Password is NOT strong enough!");
+                }
+
+            }
+        });
     }
 
     /*Checks for a suitable password given the following rules:
