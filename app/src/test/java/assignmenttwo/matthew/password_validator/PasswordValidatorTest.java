@@ -22,12 +22,12 @@ public class PasswordValidatorTest {
 
     @Test
     public void testValidateEightChars() throws Exception {
-        assertTrue(MainActivity.validate("12345678"));
+        assertTrue(MainActivity.validate("1aB@5678"));
     }
 
     @Test
     public void testValidateMoreThanEight() throws Exception {
-        assertTrue(MainActivity.validate("this is longer than eight"));
+        assertTrue(MainActivity.validate("thiS2@ is longer than eight"));
     }
 
     @Test
@@ -38,5 +38,30 @@ public class PasswordValidatorTest {
     @Test
     public void testValidateForStringPasswordRandomCase() throws Exception {
         assertFalse(MainActivity.validate("PaSsWoRD"));
+    }
+
+    @Test
+    public void testValidateNoUpperCase() throws Exception {
+        assertFalse(MainActivity.validate("abc123@#"));
+    }
+
+    @Test
+    public void testValidateNoLowerCase() throws Exception {
+        assertFalse(MainActivity.validate("ABC123@#"));
+    }
+
+    @Test
+    public void testValidateNoSpecialCharacters() throws Exception {
+        assertFalse(MainActivity.validate("abc123456"));
+    }
+
+    @Test
+    public void testValidateNoDigits() throws Exception {
+        assertFalse(MainActivity.validate("abcdef@#"));
+    }
+
+    @Test
+    public void testValidateWithValidPassword() throws Exception {
+        assertTrue(MainActivity.validate("aBc123@#@##$"));
     }
 }
